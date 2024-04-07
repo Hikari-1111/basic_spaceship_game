@@ -1,4 +1,4 @@
-#Basic game + added features
+#Basic spaceship game
 
 import random
 import pygame
@@ -14,7 +14,7 @@ from pygame.locals import(
     QUIT
 )
 
-pygame.mixer.init()                             #the mixer module is for audio and playbacks. pygame.init() works fine in most cases, but to change the defaults call pygame.mixer.init() before the other one; remember to test sounds to see if they're supported
+pygame.mixer.init()                             
 pygame.init()
 
 move_up_sound = pygame.mixer.Sound("C:/Users/steph/Desktop/Projects/tech/python/pygame/basic_spaceship_game/up_button.wav")
@@ -24,7 +24,7 @@ collision_sound = pygame.mixer.Sound("C:/Users/steph/Desktop/Projects/tech/pytho
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         super(Player, self).__init__()
-        self.surf = pygame.image.load("C:/Users/steph/Desktop/Projects/tech/python/pygame/basic_spaceship_game/rocket_image.png").convert()       #setting the Surface to be an image and using convert() to optimize surface for hardware acceleration
+        self.surf = pygame.image.load("C:/Users/steph/Desktop/Projects/tech/python/pygame/basic_spaceship_game/rocket_image.png").convert()       
         self.surf.set_colorkey((0, 0, 0), RLEACCEL)
         self.rect = self.surf.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2))
     
@@ -101,7 +101,7 @@ clouds = pygame.sprite.Group()
 CLOUDAPPEAR = pygame.USEREVENT + 2
 pygame.time.set_timer(CLOUDAPPEAR, 500)
 
-clock = pygame.time.Clock()                                       #creates a Clock object to control the frame rate of the program
+clock = pygame.time.Clock()                                      
 
 running = True
 while running:
@@ -138,7 +138,7 @@ while running:
         move_down_sound.stop()
         collision_sound.play()
 
-        pygame.time.delay(1000)                        #this line delays the time between the collision_sound and the window closing by 1000 millisecs (1 sec) so that the sound has enough time to play
+        pygame.time.delay(1000)                        
 
         running = False
     
