@@ -144,4 +144,4 @@ while running:
     
     pygame.display.flip()
 
-    clock.tick(150)                                    #adjusts the frame rate of the program to 150 frames/sec
+    clock.tick(150)                                   
