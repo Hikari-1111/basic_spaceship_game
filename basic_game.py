@@ -17,14 +17,14 @@ from pygame.locals import(
 pygame.mixer.init()                             
 pygame.init()
 
-move_up_sound = pygame.mixer.Sound("C:/Users/steph/Desktop/Projects/tech/python/pygame/basic_spaceship_game/up_button.wav")
-move_down_sound = pygame.mixer.Sound("C:/Users/steph/Desktop/Projects/tech/python/pygame/basic_spaceship_game/up_button.wav")
-collision_sound = pygame.mixer.Sound("C:/Users/steph/Desktop/Projects/tech/python/pygame/basic_spaceship_game/collision_sound.wav")
+move_up_sound = pygame.mixer.Sound("docs/assets/up_button.wav")
+move_down_sound = pygame.mixer.Sound("docs/assets/down_button.wav")
+collision_sound = pygame.mixer.Sound("docs/assets/collision_sound.wav")
 
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         super(Player, self).__init__()
-        self.surf = pygame.image.load("C:/Users/steph/Desktop/Projects/tech/python/pygame/basic_spaceship_game/rocket_image.png").convert()       
+        self.surf = pygame.image.load("docs/assets/rocket_image.png").convert()       
         self.surf.set_colorkey((0, 0, 0), RLEACCEL)
         self.rect = self.surf.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2))
     
@@ -52,7 +52,7 @@ class Player(pygame.sprite.Sprite):
 class Enemy(pygame.sprite.Sprite):
     def __init__(self):
         super(Enemy, self).__init__()
-        self.surf = pygame.image.load("C:/Users/steph/Desktop/Projects/tech/python/pygame/basic_spaceship_game/missile_image.png").convert()
+        self.surf = pygame.image.load("docs/assets/missile_image.png").convert()
         self.surf.set_colorkey((0, 0, 0), RLEACCEL)
         self.rect = self.surf.get_rect(
             center=(
@@ -70,7 +70,7 @@ class Enemy(pygame.sprite.Sprite):
 class Cloud(pygame.sprite.Sprite):
     def __init__(self):
         super(Cloud, self).__init__()
-        self.surf = pygame.image.load("C:/Users/steph/Desktop/Projects/tech/python/pygame/basic_spaceship_game/cloud_image.png").convert()
+        self.surf = pygame.image.load("docs/assets/cloud_image.png").convert()
         self.surf.set_colorkey((0, 0, 0), RLEACCEL)
         self.rect = self.surf.get_rect(
             center=(
@@ -137,7 +137,7 @@ while running:
         move_up_sound.stop()
         move_down_sound.stop()
         collision_sound.play()
-
+ 
         pygame.time.delay(1000)                        
 
         running = False
