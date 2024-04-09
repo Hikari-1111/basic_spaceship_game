@@ -1,7 +1,8 @@
 #Basic spaceship game
 
-import random
 import pygame
+import random
+import sys
 
 from pygame.locals import(
     RLEACCEL,
@@ -101,16 +102,41 @@ clouds = pygame.sprite.Group()
 CLOUDAPPEAR = pygame.USEREVENT + 2
 pygame.time.set_timer(CLOUDAPPEAR, 500)
 
-clock = pygame.time.Clock()                                      
+clock = pygame.time.Clock()
+
+def game_over():
+    gameover_font = pygame.font.Font(None, 80)                    
+    gamescreen.fill((0, 0, 0))
+    text_surface = gameover_font.render("GAME OVER", False, (255, 255, 255))                
+    text_rect = text_surface.get_rect(center=(SCREEN_WIDTH//2, SCREEN_HEIGHT//2))      
+    
+    gamescreen.blit(text_surface, text_rect)
+    pygame.display.flip()
+
+    pygame.time.delay(1000)
+
+    while True:
+        for event in pygame.event.get():
+            if event.type == KEYDOWN:
+                pygame.quit()
+                sys.exit()
+            elif event.type == QUIT:
+                pygame.quit()
+                sys.exit()
 
 running = True
+gameover_flag = False
 while running:
     for event in pygame.event.get():
         if event.type == KEYDOWN:
             if event.key == K_ESCAPE:
                 running = False
+                pygame.quit()
+                sys.exit()                                  
         elif event.type == QUIT:
             running = False
+            pygame.quit()
+            sys.exit()
         
         elif event.type == ADDENEMY:
             new_enemy = Enemy()
@@ -121,10 +147,6 @@ while running:
             new_cloud = Cloud()
             clouds.add(new_cloud)
             all_sprites.add(new_cloud)
-    
-    gamescreen.fill((52, 81, 92))
-    for entity in all_sprites:
-        gamescreen.blit(entity.surf, entity.rect)
 
     pressed_keys = pygame.key.get_pressed()
     player1.update(pressed_keys)
@@ -137,11 +159,18 @@ while running:
         move_up_sound.stop()
         move_down_sound.stop()
         collision_sound.play()
- 
-        pygame.time.delay(1000)                        
 
+        pygame.time.delay(1000)                     
+        gameover_flag = True
         running = False
     
+    gamescreen.fill((52, 81, 92))                         
+    for entity in all_sprites:
+        gamescreen.blit(entity.surf, entity.rect)
+
     pygame.display.flip()
 
-    clock.tick(150)                                   
+    clock.tick(150)                                 
+    
+    if gameover_flag:
+        game_over()
