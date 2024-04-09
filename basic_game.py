@@ -18,6 +18,7 @@ from pygame.locals import(
 pygame.mixer.init()                             
 pygame.init()
 
+#Sound source: https://opengameart.org/content/space-shooter-sound-effects
 move_up_sound = pygame.mixer.Sound("docs/assets/up_button.wav")
 move_down_sound = pygame.mixer.Sound("docs/assets/down_button.wav")
 collision_sound = pygame.mixer.Sound("docs/assets/collision_sound.wav")
