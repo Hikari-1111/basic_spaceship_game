@@ -23,6 +23,7 @@ move_up_sound = pygame.mixer.Sound("docs/assets/up_button.wav")
 move_down_sound = pygame.mixer.Sound("docs/assets/down_button.wav")
 collision_sound = pygame.mixer.Sound("docs/assets/collision_sound.wav")
 
+#Define classes for: player (spaceship), enemy (missiles) and clouds (non collision object)
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         super(Player, self).__init__()
@@ -87,10 +88,12 @@ class Cloud(pygame.sprite.Sprite):
         if self.rect.right < 0:
             self.kill()
 
+#Set gamescreen
 SCREEN_WIDTH = 1000
 SCREEN_HEIGHT = 800
 gamescreen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
+#Create groups for all the sprites, enemies and clouds; set events for enemies's and clouds' appearance
 player1 = Player()
 all_sprites = pygame.sprite.Group()
 all_sprites.add(player1)
@@ -105,6 +108,7 @@ pygame.time.set_timer(CLOUDAPPEAR, 500)
 
 clock = pygame.time.Clock()
 
+#Function for game over
 def game_over():
     gameover_font = pygame.font.Font(None, 80)                    
     gamescreen.fill((0, 0, 0))
@@ -125,6 +129,7 @@ def game_over():
                 pygame.quit()
                 sys.exit()
 
+#Game logic
 running = True
 gameover_flag = False
 while running:
